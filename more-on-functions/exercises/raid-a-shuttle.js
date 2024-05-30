@@ -21,8 +21,7 @@ function holdStatus(arr){
 let fuelLevel = 200000;
 let cargoHold = ['meal kits', 'space suits', 'first-aid kit', 'satellite', 'gold', 'water', 'AE-35 unit'];
 
-console.log("Fuel level: " + checkFuel(fuelLevel));
-console.log("Hold status: " + holdStatus(cargoHold));
+
 
 /* Steal some fuel from the shuttle:
  * /
@@ -33,8 +32,18 @@ console.log("Hold status: " + holdStatus(cargoHold));
 
 //c). Once you figure out how much fuel to pump out, return that value.
 
-//d). Decide where to best place your function call to gather our new fuel.
-
+//d). Decide where to best place your function call to gather our new fuel. */
+let nonSuspiciousFunction = function(a) {
+  if (checkFuel(a) === 'green') {
+     return a - 100001;
+  }
+  else if (checkFuel(a) === 'yellow') {
+     return a - 50001;
+  }
+  else {
+     return a;
+  }
+};
 /* Next, liberate some of that glorious cargo.
  * /
 
@@ -44,8 +53,14 @@ console.log("Hold status: " + holdStatus(cargoHold));
 
 //c). The cargo hold has better security than the fuel tanks. It counts how many things are in storage. You need to replace what you steal with something worthless. The count MUST stay the same, or you’ll get caught and thrown into the LaunchCode brig.
 
-//d). Don’t get hasty, matey! Remember to test your function.
-
+//d). Don’t get hasty, matey! Remember to test your function. */
+let nonSuspiciousFunction2 = function(arr) {
+  let nothingToSee = [];
+  nothingToSee = arr.splice(3,2,"paper", "sticks");
+  return nothingToSee;
+}
+console.log(nonSuspiciousFunction2(cargoHold));
+console.log(cargoHold);
 /* Finally, you need to print a receipt for the accountant. Don’t laugh! That genius knows MATH and saves us more gold than you can imagine.
  * /
  
@@ -53,5 +68,8 @@ console.log("Hold status: " + holdStatus(cargoHold));
 	
 //b). Call your anonymous fuel and cargo functions from within irs.
 
-//c). Use a template literal to return, "Raided _____ kg of fuel from the tanks, and stole ____ and ____ from the cargo hold."
-
+//c). Use a template literal to return, "Raided _____ kg of fuel from the tanks, and stole ____ and ____ from the cargo hold." */
+let irs = function(levelOfFuel, itemsInCargo) {
+  let arr = deckMops(itemsInCargo);
+  return `Raided ${nonSuspiciousFunction(fuelLevel)} kg of fuel from the tanks, and stole ${arr[0]} and ${arr[1]} from the cargo hold.`
+}
